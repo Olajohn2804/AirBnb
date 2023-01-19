@@ -1,20 +1,29 @@
 import React from 'react'
-import frame1 from '../images/Frame1.png'
 import star from '../images/Star1.svg'
+import image from '../images/katie-zaferes.png'
 const Card = (props) => {
+    let badge;
+    if (props.openSpots === 0 ){
+        badge = "Sold Out"
+    }else if(props.location === "Online"){
+        badge = "Online"
+    }else{
+        badge = "Available"
+    }
   return (
     <>
         <div className="card">
             <div className="card-body">
-                <img src={`../images/${props.img}`} alt="Card-img" /> <br />
-                <div className="card--stats">
-                <img src={star}/>
-                <span>{props.rating} </span>
-                <span className='light'>({props.reviewCount})•</span>
-                <span className='light'> {props.Country}</span>
+                {badge && <div className="card--badge">{badge}</div>}
+                <img src={image} alt="Card-img" className='card--image' /> <br />
+                <div className="card--stats"> 
+                <img src={star} className="card--star"/>
+                <span>{props.stats.rating} </span>
+                <span className='light'>({props.stats.reviewCount})•</span>
+                <span className='light'> {props.location}</span>
                 </div>
-                <p>{props.title}</p>
-                <p>From <span className='bold'>${props.Price}</span> / person</p>
+                <p className="card--title">{props.title}</p>
+                <p className="card--price">From <span className='bold'>${props.price}</span> / person</p>
             </div>
         </div>    
     </>
